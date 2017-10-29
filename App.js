@@ -1,38 +1,24 @@
 import React from 'react';
 
-import { StyleSheet, Text, View, Picker } from 'react-native';
+import { AppState, View, StyleSheet, Text, Picker } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import I18n from 'i18n-js';
-I18n.fallbacks = true;
-I18n.defaultLocale = 'en'
-I18n.locale = navigator.language; 
-I18n.translations = {
-  en: {
-    enter: 'Enter!'
-  },
-  ru: {
-    enter: 'Вход!'
-  },
-  de: {
-    enter: 'Eingang!'
-  }
-}
-//Implement App state to store language key
-
+import Context from './src/Context.js';
+import I18nHelper from './src/I18nHelper.js';
 
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      language: navigator.language,
+    this.state = { 
+      language: Context.language,
     };
   }
 
   onPickerChange(itemValue, itemIndex) {
-    I18n.locale = itemValue;
-    this.setState({"language":itemValue});
+    I18nHelper.setLanguage(itemValue);
+    this.setState({"language": itemValue});
   }
 
   render() {
@@ -46,9 +32,9 @@ export default class App extends React.Component {
           style={styles.picker}
           selectedValue={this.state.language}
           onValueChange={this.onPickerChange.bind(this)}>
-          <Picker.Item label="English" value="en" />
-          <Picker.Item label="Russian" value="ru" />
-          <Picker.Item label="German" value="de" />
+          <Picker.Item label={I18n.t('english')} value="en" />
+          <Picker.Item label={I18n.t('russian')} value="ru" />
+          <Picker.Item label={I18n.t('german')} value="de" />
         </Picker>
       </View>
     );
