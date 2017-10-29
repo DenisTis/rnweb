@@ -25,9 +25,6 @@ export default class App extends React.Component {
     return (
       <View style={styles.container}>
         <Icon name='paw' size={80} color="orange" style={styles.icon} />
-        <Text style={styles.text}>
-        {I18n.t('enter')}
-        </Text>
         <Picker mode="dropdown"
           style={styles.picker}
           selectedValue={this.state.language}
@@ -36,6 +33,9 @@ export default class App extends React.Component {
           <Picker.Item label={I18n.t('russian')} value="ru" />
           <Picker.Item label={I18n.t('german')} value="de" />
         </Picker>
+        <Text style={styles.text}>
+        {I18n.t('enter')}
+        </Text>
       </View>
     );
   }
@@ -53,11 +53,12 @@ const styles = StyleSheet.create({
   },
   text: {
     fontWeight: 'bold',
-    fontSize: 20,
+    fontSize: 20, 
     textAlign: 'center',
   },
   picker: {
     height:30, 
     width:200,
+    paddingBottom: 100,
   },
 });
