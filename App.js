@@ -12,6 +12,8 @@ import I18nHelper from './src/I18nHelper.js';
 import Home from './src/pages/Home';    
 import Menu from './src/pages/Menu';
 
+import styles from './src/styles/common';
+
 export default class App extends React.Component {
   render() {
     return ( 
@@ -26,24 +28,3 @@ export default class App extends React.Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#c5eafd',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  icon: {
-    paddingBottom: 20,
-  },
-  text: {
-    fontWeight: 'bold',
-    fontSize: 20,
-    textAlign: 'center',
-  },
-  picker: {
-    height: 30,
-    width: 200,
-  },
-});

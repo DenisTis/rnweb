@@ -7,8 +7,10 @@ import I18n from 'i18n-js';
 import Context from '../Context.js';
 import I18nHelper from '../I18nHelper.js';
 
-import { Route, MemoryRouter, memoryHistory as History} from 'react-router';
+//import { Route, MemoryRouter, memoryHistory as History} from 'react-router';
+import { NativeRouter as Router} from 'react-router-native';
 
+import styles from '../styles/common';
 
 export default class Homepage extends React.Component {
   constructor(props) {
@@ -24,12 +26,12 @@ export default class Homepage extends React.Component {
   }
 
   onButtonPress() {
-   // History.push('/menu');  
+    Router.push('/menu');  
   }
  
   render() {
     return (
-      <View style={styles.container}>
+       <View style={styles.container}>
         <Icon name='paw' size={80} color="orange" style={styles.icon} />
         <Picker mode="dropdown"
           style={styles.picker}
@@ -40,29 +42,7 @@ export default class Homepage extends React.Component {
           <Picker.Item label={I18n.t('german')} value="de" />
         </Picker>
         <Button title={I18n.t('enter')} color="orange" onPress={this.onButtonPress} />
-      </View>
+       </View> 
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#c5eafd',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  icon: {
-    paddingBottom: 20,
-  },
-  text: {
-    fontWeight: 'bold',
-    fontSize: 20, 
-    textAlign: 'center',
-  },
-  picker: {
-    height:30, 
-    width:200,
-    paddingBottom: 100,
-  },
-});
