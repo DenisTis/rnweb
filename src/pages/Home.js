@@ -1,11 +1,13 @@
 import React from 'react';
 
-import { AppState, View, StyleSheet, Text, Picker } from 'react-native';
+import { AppState, View, StyleSheet, Picker, Button } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import I18n from 'i18n-js';
 import Context from '../Context.js';
 import I18nHelper from '../I18nHelper.js';
+
+import { Route, MemoryRouter, memoryHistory as History} from 'react-router';
 
 
 export default class Homepage extends React.Component {
@@ -21,6 +23,10 @@ export default class Homepage extends React.Component {
     this.setState({"language": itemValue});
   }
 
+  onButtonPress() {
+   // History.push('/menu');  
+  }
+ 
   render() {
     return (
       <View style={styles.container}>
@@ -33,9 +39,7 @@ export default class Homepage extends React.Component {
           <Picker.Item label={I18n.t('russian')} value="ru" />
           <Picker.Item label={I18n.t('german')} value="de" />
         </Picker>
-        <Text style={styles.text}>
-        {I18n.t('enter')}
-        </Text>
+        <Button title={I18n.t('enter')} color="orange" onPress={this.onButtonPress} />
       </View>
     );
   }

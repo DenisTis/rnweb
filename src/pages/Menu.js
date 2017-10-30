@@ -26,7 +26,7 @@ export default class Menu extends React.Component {
       <View style={styles.container}>
         <Icon name='cogs' size={80} color="green" style={styles.icon} />
         <Text style={styles.text}>
-        Menu test
+        {I18n.t('menu')}
         </Text>
       </View>
     );
