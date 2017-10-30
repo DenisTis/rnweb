@@ -8,7 +8,17 @@ import I18n from 'i18n-js';
 import Context from './src/Context.js';
 import I18nHelper from './src/I18nHelper.js';
 
-import Homepage from './src/pages/Homepage';
+import Home from './src/pages/Home';
+import Menu from './src/pages/Menu';
+
+
+const routes = (
+  <Route exact path="/home" component={Home}>
+    <Route path="/menu" component={Menu} />
+  </Route>
+)
+
+
 
 export default class App extends React.Component {
   
@@ -17,8 +27,9 @@ export default class App extends React.Component {
       <MemoryRouter 
       initialEntries={['/home']}
       initialIndex={0}
+      routes = {routes}
       >
-    <Route path="/home" component={Homepage} />
+      <Route exact path="/home" component={Home} />
   </MemoryRouter>
     );
   }

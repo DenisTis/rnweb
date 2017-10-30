@@ -8,7 +8,7 @@ import Context from '../Context.js';
 import I18nHelper from '../I18nHelper.js';
 
 
-export default class App extends React.Component {
+export default class Homepage extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
