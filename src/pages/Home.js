@@ -9,9 +9,11 @@ import I18nHelper from '../I18nHelper.js';
 import styles from '../styles/common';
 
 export default class Homepage extends React.Component {
-  // static navigationOptions = {
-  //   title: 'Welcome',
-  // };
+  static navigationOptions = {
+    title: 'Home',
+    headerStyle: styles.navigationHeader,
+    headerTitleStyle: styles.navigationHeaderTitle
+  }
 
   constructor(props) {
     super(props);
@@ -38,11 +40,11 @@ export default class Homepage extends React.Component {
           <Picker.Item label={I18n.t('russian')} value="ru" />
           <Picker.Item label={I18n.t('german')} value="de" />
         </Picker>
-        <Button title={I18n.t('enter')} 
-        color="orange" 
-        onPress={() => navigate('Menu')}
+        <Button title={I18n.t('enter')}
+          color="orange"
+          onPress={() => navigate('Menu')}
         />
       </View>
     );
-  } 
+  }
 }

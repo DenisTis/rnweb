@@ -20,4 +20,12 @@ export default StyleSheet.create({
     width: 200,
     paddingBottom: 100,
   },
+  navigationHeader: {
+    backgroundColor: '#c5eafd',
+    elevation: 0,
+    shadowOpacity: 0,
+  },
+  navigationHeaderTitle: {
+    alignSelf: 'center',
+  }  
 });

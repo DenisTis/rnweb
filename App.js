@@ -13,7 +13,7 @@ export default RootNavigator = StackNavigator({
   } 
 },
 {
-  headerMode:"screen"
+  headerMode:"screen" 
 }
 );    
 

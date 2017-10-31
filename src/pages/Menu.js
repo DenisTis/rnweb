@@ -7,18 +7,26 @@ import I18n from 'i18n-js';
 import Context from '../Context.js';
 import I18nHelper from '../I18nHelper.js';
 import styles from '../styles/common';
-
+  
 export default class Menupage extends React.Component {
+  static navigationOptions = {
+    title: I18n.t('menu'),
+    headerStyle: styles.navigationHeader,
+    headerTitleStyle: styles.navigationHeaderTitle,
+    //that centers text when back button exists
+    headerRight: <View/>
+  }
+
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
       language: Context.language,
     };
   }
 
   onPickerChange(itemValue, itemIndex) {
     I18nHelper.setLanguage(itemValue);
-    this.setState({"language": itemValue});
+    this.setState({ "language": itemValue });
   }
 
   render() {
@@ -26,7 +34,7 @@ export default class Menupage extends React.Component {
       <View style={styles.container}>
         <Icon name='cogs' size={80} color="green" style={styles.icon} />
         <Text style={styles.text}>
-        {I18n.t('menu')}
+          {I18n.t('menu')}
         </Text>
       </View>
     );
