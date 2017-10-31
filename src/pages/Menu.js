@@ -8,7 +8,7 @@ import Context from '../Context.js';
 import I18nHelper from '../I18nHelper.js';
 import styles from '../styles/common';
 
-class Menupage extends React.Component {
+export default class Menupage extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
@@ -32,5 +32,3 @@ class Menupage extends React.Component {
     );
   }
 }
-
-export default Menupage;

@@ -8,30 +8,30 @@ import Context from '../Context.js';
 import I18nHelper from '../I18nHelper.js';
 import styles from '../styles/common';
 
-class Homepage extends React.Component {
-  static navigationOptions = {
-    title: 'Welcome',
-  };
+export default class Homepage extends React.Component {
+  // static navigationOptions = {
+  //   title: 'Welcome',
+  // };
 
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
       language: Context.language,
     };
   }
 
   onPickerChange(itemValue, itemIndex) {
     I18nHelper.setLanguage(itemValue);
-    this.setState({"language": itemValue});
+    this.setState({ "language": itemValue });
   }
 
   onButtonPress() {
-
+    this.props.navigation.navigate('Menu');
   }
 
   render() {
     return (
-       <View style={styles.container}>
+      <View style={styles.container}>
         <Icon name='paw' size={80} color="orange" style={styles.icon} />
         <Picker mode="dropdown"
           style={styles.picker}
@@ -42,10 +42,7 @@ class Homepage extends React.Component {
           <Picker.Item label={I18n.t('german')} value="de" />
         </Picker>
         <Button title={I18n.t('enter')} color="orange" onPress={this.onButtonPress} />
-       </View> 
+      </View>
     );
   }
 }
-
-
-export default Homepage;

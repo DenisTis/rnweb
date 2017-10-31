@@ -4,7 +4,7 @@ import { StackNavigator } from 'react-navigation';
 import Homepage from './src/pages/Home';
 import Menupage from './src/pages/Menu'; 
 
-const RootNavigator = StackNavigator({ 
+export default RootNavigator = StackNavigator({ 
   Home: {
     screen: Homepage,
   },

@@ -1,5 +1,5 @@
 Do not forget to switch PATH for EXPO everytime, IP address is being changed!
-
+set REACT_NATIVE_PACKAGER_HOSTNAME='192.168.0.150'
 
 Remember, "create-react-native-app", 
 should use components from EXPO when possible.
