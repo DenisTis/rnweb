@@ -1,18 +1,18 @@
 import React from 'react';
 
-import { AppState, View, StyleSheet, Picker, Button } from 'react-native';
+import { View, StyleSheet, Picker, Button } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import I18n from 'i18n-js';
 import Context from '../Context.js';
 import I18nHelper from '../I18nHelper.js';
-
-//import { Route, MemoryRouter, memoryHistory as History} from 'react-router';
-import { NativeRouter as Router} from 'react-router-native';
-
 import styles from '../styles/common';
 
-export default class Homepage extends React.Component {
+class Homepage extends React.Component {
+  static navigationOptions = {
+    title: 'Welcome',
+  };
+
   constructor(props) {
     super(props);
     this.state = { 
@@ -26,9 +26,9 @@ export default class Homepage extends React.Component {
   }
 
   onButtonPress() {
-    Router.push('/menu');  
+
   }
- 
+
   render() {
     return (
        <View style={styles.container}>
@@ -46,3 +46,6 @@ export default class Homepage extends React.Component {
     );
   }
 }
+
+
+export default Homepage;
