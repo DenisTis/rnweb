@@ -9,7 +9,11 @@ export default RootNavigator = StackNavigator({
     screen: Homepage,
   },
   Menu: { 
-    screen: Menupage,
-  }
+    screen: Menupage,   
+  } 
+},
+{
+  headerMode:"screen"
 }
-);
+);    
+
