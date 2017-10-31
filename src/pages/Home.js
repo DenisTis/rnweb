@@ -25,11 +25,8 @@ export default class Homepage extends React.Component {
     this.setState({ "language": itemValue });
   }
 
-  onButtonPress() {
-    this.props.navigation.navigate('Menu');
-  }
-
   render() {
+    const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
         <Icon name='paw' size={80} color="orange" style={styles.icon} />
@@ -41,8 +38,11 @@ export default class Homepage extends React.Component {
           <Picker.Item label={I18n.t('russian')} value="ru" />
           <Picker.Item label={I18n.t('german')} value="de" />
         </Picker>
-        <Button title={I18n.t('enter')} color="orange" onPress={this.onButtonPress} />
+        <Button title={I18n.t('enter')} 
+        color="orange" 
+        onPress={() => navigate('Menu')}
+        />
       </View>
     );
-  }
+  } 
 }

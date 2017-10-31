@@ -13,16 +13,3 @@ export default RootNavigator = StackNavigator({
   }
 }
 );
-
-// const RootNavigator = StackNavigator({ 
-//   Home: {
-//     screen: HomeScreen,
-//   },
-//   Menu: {
-//     screen: MenuScreen,
-//   }
-// },
-//   {
-//     initialRouteName: 'Home',
-//   }
-// );
