@@ -5,6 +5,13 @@ set REACT_NATIVE_PACKAGER_HOSTNAME='192.168.0.150'
 Remember, "create-react-native-app", 
 should use components from EXPO when possible.
 
+DEBUGGING
+To do debug, try to get standalone version of React-devtools:
+(Better implement it as a project dependency)
+  npm install -g react-devtools
+  start by typing react-devtools
+(!Learn how to use react-devtools)
+
 
 Probably Redux should be implemented to update all views once 
 language is being changed.    
