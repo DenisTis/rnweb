@@ -16,10 +16,15 @@ module.exports = {
         }
       },
       {
-        test: /\.ttf$/,
-        loader: "url-loader", // or directly file-loader
-        include: path.resolve(__dirname, "node_modules/react-native-vector-icons"),
-      },
+        test: /\.less$/,
+        use: [{
+            loader: "style-loader" // creates style nodes from JS strings
+        }, {
+            loader: "css-loader" // translates CSS into CommonJS
+        }, {
+            loader: "less-loader" // compiles Less to CSS
+        }]
+      },      
       {
         test: /\.css$/,
         loader: 'style-loader!css-loader'

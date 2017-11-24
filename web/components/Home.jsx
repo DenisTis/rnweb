@@ -1,11 +1,15 @@
 import React from 'react';
 
 // import { View, StyleSheet, Picker, Button } from 'react-native';
- //import Icon from 'react-native-vector-icons/dist/FontAwesome';
 
+// import FontAwesome from 'react-fontawesome';
+//  import 'font-awesome/less/font-awesome.less';
+import * as FontAwesome from 'react-icons/lib/fa';
+ 
  import I18n from 'i18n-js';
  import Context from '../../commons/Context.js';
  import I18nHelper from '../../commons/I18nHelper.js';
+
 // import styles from '../styles/common';
 
 import { Link } from 'react-router-dom';
@@ -34,6 +38,7 @@ export default class Homepage extends React.Component {
     return (
       <div>
       <h1>{I18n.t('home')}</h1>
+      <FontAwesome.FaPaw color="orange" size="80"/>
       <Link to="/menu">
       <button class="btn btn-primary" type="button">{I18n.t('enter')}</button>
       </Link>
