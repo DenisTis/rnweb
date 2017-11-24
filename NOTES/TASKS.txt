@@ -1,6 +1,8 @@
-0. In the web application, implement same two pages with language selection and elements
-0.1. Add styles as in native
-0.2. Add icons as in native
+[X] 0. In the web application, implement same two pages with language selection and elements
+[%] 0.1. Add styles as in native 
+[X] 0.2. Add icons as in native
+0.3 Make navigation button as in native
+0.4 Implement language selection
 1. In the native environment, make title dynamic (being refreshed)
 2. Create simple dialog tree component and use it
 3. In the web version, implement same look and feel as in native

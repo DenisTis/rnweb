@@ -2,11 +2,12 @@ import React from 'react';
 
 // import { View, StyleSheet, Text } from 'react-native';
 // import Icon from 'react-native-vector-icons/FontAwesome';
+import {FaCogs} from 'react-icons/lib/fa';
 
  import I18n from 'i18n-js';
 // import Context from '../Context.js';
 // import I18nHelper from '../I18nHelper.js';
-// import styles from '../styles/common';
+ import '../styles.css';
   
 export default class Menupage extends React.Component {
   // static navigationOptions = {
@@ -31,8 +32,10 @@ export default class Menupage extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className='container'>
       <h1>{I18n.t('menu')} </h1>
+      <FaCogs color="green" size="80"/>
+      <h5>{I18n.t('menu')}</h5>
       </div>
       // <View style={styles.container}>
       //   <Icon name='cogs' size={80} color="green" style={styles.icon} />
