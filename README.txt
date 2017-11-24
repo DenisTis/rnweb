@@ -6,6 +6,8 @@ Remember, "create-react-native-app",
 should use components from EXPO when possible.
 
 DEBUGGING
+Remember to shake device to activate dev menu and set "Remote JS Debugging"
+
 To do debug, try to get standalone version of React-devtools:
 (Better implement it as a project dependency)
   npm install -g react-devtools
@@ -14,7 +16,7 @@ To do debug, try to get standalone version of React-devtools:
 
 
 Probably Redux should be implemented to update all views once 
-language is being changed.    
+language is being changed.
 
 Or I have to find another way to refresh navigation header.
 So far it is only refreshed on main page, but not on leaf pages.
