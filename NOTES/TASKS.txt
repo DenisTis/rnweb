@@ -1,0 +1,11 @@
+0. In the web application, implement same two pages with language selection and elements
+1. In the native environment, make title dynamic (being refreshed)
+2. Create simple dialog tree component and use it
+3. In the web version, implement same look and feel as in native
+4. Create simple area map with clickable sections
+4.1. User should be able to move map, click some places and navigate there
+4.2. Deploy map to native and test how it works there.
+4.3. Deploy map to web version.
+
+Update/create document explaining how to start project.
+Update/create document explaining how to debug on real phone or android emulator

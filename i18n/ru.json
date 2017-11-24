@@ -1,10 +1,8 @@
 {
-//Languages
 "english": "English",
 "russian": "Русский",
 "german": "Deutsch",
-//Other texts  
-  "enter": "Вход",
-  "menu": "Меню",
-  "home": "Старт"
+"enter": "Вход",
+"menu": "Меню",
+"home": "Старт"
 }

@@ -1,9 +1,7 @@
 {
-//Languages
 "english": "English",
 "russian": "Русский",
 "german": "Deutsch",
-//Other texts  
   "enter": "Enter",
   "menu": "Menu",
   "home": "Start app"
