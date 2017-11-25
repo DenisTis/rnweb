@@ -12,7 +12,7 @@ export default class Menupage extends React.Component {
         <NavLink to="/">{I18n.t('home')}</NavLink>
         <h1>{I18n.t('menu')} </h1>
         <div class="btn-group-vertical" aria-label="Options">
-        <Link to="/map">
+        <Link to="/map">  
         <button class="btn btn-primary" type="button">{I18n.t('mapNavigation')}</button>
         </Link>
         <Link to="/menu/talk">

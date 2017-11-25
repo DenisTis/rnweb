@@ -24,6 +24,11 @@ ReactDom.render((
        <Route path="/menu/talk" component={TalkDialog} />
      </Switch>
    </BrowserRouter>
+// Here is how query can be hidden: https://stackoverflow.com/questions/42089626/how-to-hide-query-string-parameter-in-reactjs-react-router
+// Check this code in Navigation object it if will be possible to hide final url
+//   .makePath('about') // return URL
+//   .makeHref('about') // return URL
+
 ),
   document.getElementById('root')
 );

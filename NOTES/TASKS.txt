@@ -2,6 +2,7 @@
 [X] 0.1. Add styles as in native 
 [X] 0.2. Add icons as in native
 0.3 Make navigation button as in native or check how to do navigation, where path is not shown in browser
+    Check transitionTo method (currently dumps)
 [X] 0.4 Implement language selection
 1. In the native environment, make title dynamic (being refreshed)
 1.1. In the native environment, add same flags as in mobile
