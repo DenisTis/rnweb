@@ -44,7 +44,7 @@ export default class Homepage extends React.Component {
         </Link>
         <div>
         <Link to="/*">
-          Not found
+        {I18n.t('notFound')}
         </Link>
         </div>
       </div>

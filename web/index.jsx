@@ -11,6 +11,8 @@ import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
  import Home from './components/Home.jsx';
  import Menu from './components/Menu.jsx';
  import NotFound from './components/NotFound.jsx';
+ import MapNavigation from './components/MapNavigation.jsx';
+ import TalkDialog from './components/TalkDialog.jsx';
 
 ReactDom.render((
    <BrowserRouter>
@@ -18,6 +20,8 @@ ReactDom.render((
        <Route exact path="/" component={Home} />
        <Route path="/menu" component={Menu} />
        <Route path="*" component={NotFound}/>
+       <Route path="/menu/map" component={MapNavigation} />
+       <Route path="/menu/talk" component={TalkDialog} />
      </Switch>
    </BrowserRouter>
 ),
