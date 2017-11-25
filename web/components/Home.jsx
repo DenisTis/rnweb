@@ -4,13 +4,14 @@ import React from 'react';
 
 // import FontAwesome from 'react-fontawesome';
 //  import 'font-awesome/less/font-awesome.less';
-import {FaPaw} from 'react-icons/lib/fa';
- 
- import I18n from 'i18n-js';
- import Context from '../../commons/Context.js';
- import I18nHelper from '../../commons/I18nHelper.js';
+import { FaPaw } from 'react-icons/lib/fa';
+// import Flag from "react-flags";
 
- import '../styles.css';
+import I18n from 'i18n-js';
+import Context from '../../commons/Context.js';
+import I18nHelper from '../../commons/I18nHelper.js';
+
+import '../styles.css';
 
 import { Link } from 'react-router-dom';
 
@@ -34,16 +35,23 @@ export default class Homepage extends React.Component {
   // }
 
   render() {
-//    const { navigate } = this.props.navigation;
+    //    const { navigate } = this.props.navigation;
     return (
       <div class="container">
-      <h1>{I18n.t('home')}</h1>
-      <FaPaw color="orange" size="80"/>
-      <br/>
-      <Link to="/menu">
-      <button class="btn btn-primary" type="button">{I18n.t('enter')}</button>
-      </Link>
+        <div class="btn-group toolbarTopRight" role="group" aria-label="Language selection">
+          <button type="button" class="btn btn-default">Left</button>
+          {/* <Flag name="CAN" format="png" pngSize={64} shiny={true} alt="Canada Flag" basePath="..\..\assets\web\vendor"/> */}
+        </div>
+        <button type="button" class="btn btn-default">Right</button>
+      <div id="content" class="container">
+        <h1>{I18n.t('home')}</h1>
+        <FaPaw color="orange" size="80" />
+        <br />
+        <Link to="/menu">
+          <button class="btn btn-primary" type="button">{I18n.t('enter')}</button>
+        </Link>
       </div>
+      </div >
       // <View style={styles.container}>
       //   <Icon name='paw' size={80} color="orange" style={styles.icon} />
       //   <Picker mode="dropdown"
