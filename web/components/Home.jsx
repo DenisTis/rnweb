@@ -1,19 +1,18 @@
 import React from 'react';
 
 // import { View, StyleSheet, Picker, Button } from 'react-native';
-
-// import FontAwesome from 'react-fontawesome';
-//  import 'font-awesome/less/font-awesome.less';
 import { FaPaw } from 'react-icons/lib/fa';
-// import Flag from "react-flags";
+import FlagIcon from './FlagIcon.js';
 
 import I18n from 'i18n-js';
 import Context from '../../commons/Context.js';
 import I18nHelper from '../../commons/I18nHelper.js';
-
 import '../styles.css';
 
 import { Link } from 'react-router-dom';
+
+const BUTTON_STYLE = "btn btn-info";
+const SELECTED_BUTTON_STYLE = "btn btn-info active";
 
 export default class Homepage extends React.Component {
   // static navigationOptions = {
@@ -22,27 +21,37 @@ export default class Homepage extends React.Component {
   //   headerTitleStyle: styles.navigationHeaderTitle
   // }
 
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     language: Context.language,
-  //   };
-  // }
-
-  // onPickerChange(itemValue, itemIndex) {
-  //   I18nHelper.setLanguage(itemValue);
-  //   this.setState({ "language": itemValue });
-  // }
-
   render() {
-    //    const { navigate } = this.props.navigation;
+    function setNewFlag(event) {
+      let cssClass = event.target.className;
+      let languageKey = cssClass.substr(cssClass.length-2);
+      if (languageKey==="gb") {
+        languageKey = "en";
+      }
+      console.log(languageKey);
+      alert("language selected " + languageKey);
+     I18nHelper.setLanguage(event.currentTarget.id);
+  //   this.setState({ "language": itemValue });      
+    }
     return (
-      <div class="container">
-        <div class="btn-group toolbarTopRight" role="group" aria-label="Language selection">
-          <button type="button" class="btn btn-default">Left</button>
-          {/* <Flag name="CAN" format="png" pngSize={64} shiny={true} alt="Canada Flag" basePath="..\..\assets\web\vendor"/> */}
+       <div class="container">
+         {/* <div class="btn-toolbar toolbarTopRight" role="group" aria-label="Language selection">
+         <button id="en" type="button" class="btn btn-primary-outline" onClick={setNewFlag}>
+         <FlagIcon code={'gb'} size={'2x'} />
+         </button>
+         <button id="ru" type="button" class="btn btn-info" onClick={setNewFlag}>
+         <FlagIcon code={'ru'} size={'2x'} />
+         </button>
+         <button id="de" type="button" class="btn btn-info" onClick={setNewFlag}>
+         <FlagIcon code={'de'} size={'2x'} />
+         </button>
+         </div> */}
+
+        <div class="btn-toolbar toolbarTopRight" aria-label="Language selection" onClick={setNewFlag}>
+        <FlagIcon code={'gb'} size={'3x'} />
+        <FlagIcon code={'ru'} size={'3x'} />
+        <FlagIcon code={'de'} size={'3x'} />
         </div>
-        <button type="button" class="btn btn-default">Right</button>
       <div id="content" class="container">
         <h1>{I18n.t('home')}</h1>
         <FaPaw color="orange" size="80" />
@@ -52,21 +61,6 @@ export default class Homepage extends React.Component {
         </Link>
       </div>
       </div >
-      // <View style={styles.container}>
-      //   <Icon name='paw' size={80} color="orange" style={styles.icon} />
-      //   <Picker mode="dropdown"
-      //     style={styles.picker}
-      //     selectedValue={this.state.language}
-      //     onValueChange={this.onPickerChange.bind(this)}>
-      //     <Picker.Item label={I18n.t('english')} value="en" />
-      //     <Picker.Item label={I18n.t('russian')} value="ru" />
-      //     <Picker.Item label={I18n.t('german')} value="de" />
-      //   </Picker>
-      //   <Button title={I18n.t('enter')}
-      //     color="orange"
-      //     onPress={() => navigate('Menu')}
-      //   />
-      // </View>
     );
   }
 }
