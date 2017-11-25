@@ -4,5 +4,6 @@
   "german": "Deutsch",
   "enter": "Eingang",
   "menu": "Menu",
-  "home": "Erste Seite"
+  "home": "Erste Seite",
+  "notFound": "Die Seite existiert nicht"
 }

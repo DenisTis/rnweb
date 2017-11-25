@@ -1,9 +1,10 @@
 [X] 0. In the web application, implement same two pages with language selection and elements
-[%] 0.1. Add styles as in native 
+[X] 0.1. Add styles as in native 
 [X] 0.2. Add icons as in native
-0.3 Make navigation button as in native
-0.4 Implement language selection
+0.3 Make navigation button as in native or check how to do navigation, where path is not shown in browser
+[X] 0.4 Implement language selection
 1. In the native environment, make title dynamic (being refreshed)
+1.1. In the native environment, add same flags as in mobile
 2. Create simple dialog tree component and use it
 3. In the web version, implement same look and feel as in native
 4. Create simple area map with clickable sections

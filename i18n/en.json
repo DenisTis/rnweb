@@ -4,5 +4,6 @@
 "german": "Deutsch",
   "enter": "Enter",
   "menu": "Menu",
-  "home": "Start app"
+  "home": "Start app",
+  "notFound": "Page you are looking for, does not exist"
 }
