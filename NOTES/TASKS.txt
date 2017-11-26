@@ -6,7 +6,7 @@
 [X] 0.4 Implement language selection
 [X] 0.5. Implement nested views:
 1. In the native environment, make title dynamic (being refreshed)
-1.1. In the native environment, add same flags as in mobile
+[X] 1.1. In the native environment, add same flags as in mobile
 2. Create simple dialog tree component and use it
 3. In the web version, implement same look and feel as in native
 4. Create simple area map with clickable sections
@@ -25,3 +25,4 @@ Create document explaining how to export objects from Blender to three.js
 Publicity:
 adsense for web
 admob for native (Expo only has FB Ads for now)
+Add google authorization for users

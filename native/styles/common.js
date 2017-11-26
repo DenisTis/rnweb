@@ -35,6 +35,7 @@ export default StyleSheet.create({
     // paddingRight:70, 
   },
   flagToolbar: {
+    marginRight: 15       
     // paddingRight: 10   
   }
 });

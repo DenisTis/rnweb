@@ -2,6 +2,9 @@ Do not forget to switch PATH for EXPO everytime, IP address is being changed!
 set REACT_NATIVE_PACKAGER_HOSTNAME='192.168.0.150'
 - that did not work when called from cmd
 
+Install exp to be able to build android standalone package.
+Details here: https://docs.expo.io/versions/latest/guides/building-standalone-apps.html
+
 Remember, "create-react-native-app" should use components from EXPO when possible.
 
 DEBUGGING
