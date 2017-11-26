@@ -4,8 +4,7 @@
 0.3 Make navigation button as in native or check how to do navigation, where path is not shown in browser
     Check transitionTo method (currently dumps)
 [X] 0.4 Implement language selection
-0.5. Implement nested views:
-Check here how to do it: https://stackoverflow.com/questions/42984597/multiple-nested-routes-in-react-router-dom-v4
+[X] 0.5. Implement nested views:
 1. In the native environment, make title dynamic (being refreshed)
 1.1. In the native environment, add same flags as in mobile
 2. Create simple dialog tree component and use it
@@ -14,6 +13,9 @@ Check here how to do it: https://stackoverflow.com/questions/42984597/multiple-n
 4.1. User should be able to move map, click some places and navigate there                                   
 4.2. Deploy map to native and test how it works there.                    
 4.3. Deploy map to web version.
+4.4. Add user authentication via google
+4.5. learn how to pass data between states
+4.6. Check if context class is needed at all or can be deleted
 
 Update/create document explaining how to start project.
 Update/create document explaining how to debug on real phone or android emulator

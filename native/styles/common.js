@@ -27,5 +27,14 @@ export default StyleSheet.create({
   },
   navigationHeaderTitle: {
     alignSelf: 'center',
-  }  
+  },
+  flagsToolbar: {
+    // paddingTop:30,
+    // paddingBottom:10,
+    flexDirection:'row',
+    // paddingRight:70, 
+  },
+  flagToolbar: {
+    // paddingRight: 10   
+  }
 });
