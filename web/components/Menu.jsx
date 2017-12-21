@@ -11,12 +11,12 @@ export default class Menupage extends React.Component {
       <div className='container'>
         <NavLink to="/">{I18n.t('home')}</NavLink>
         <h1>{I18n.t('menu')} </h1>
-        <div class="btn-group-vertical" aria-label="Options">
+        <div className="btn-group-vertical" aria-label="Options">
           <NavLink to="/map">
-            <button class="btn btn-primary" type="button">{I18n.t('mapNavigation')}</button>
+            <button className="btn btn-primary" type="button">{I18n.t('mapNavigation')}</button>
           </NavLink>
           <Link to="/talk">
-            <button class="btn btn-primary" type="button">Dialogs</button>
+            <button className="btn btn-primary" type="button">Dialogs</button>
           </Link>
         </div>
       </div>

@@ -29,18 +29,18 @@ export default class Homepage extends React.Component {
 
   render() {
     return (
-       <div class="container">
-        <div class="btn-toolbar toolbarTopRight" aria-label="Language selection" onClick={this.changeLanguage}>
+       <div className="container">
+        <div className="btn-toolbar toolbarTopRight" aria-label="Language selection" onClick={this.changeLanguage}>
         <FlagIcon code={'gb'} size={'3x'} />
         <FlagIcon code={'ru'} size={'3x'} />
         <FlagIcon code={'de'} size={'3x'} />
         </div>
-      <div id="content" class="container">
+      <div id="content" className="container">
         <h1>{I18n.t('home')}</h1>
         <FaPaw color="orange" size="80" />
         <br />
         <Link to="/menu">
-          <button class="btn btn-primary" type="button">{I18n.t('enter')}</button>
+          <button className="btn btn-primary" type="button">{I18n.t('enter')}</button>
         </Link>
         <div>
         <Link to="/*">
