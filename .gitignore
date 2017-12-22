@@ -1,4 +1,5 @@
 node_modules/
 .expo/
 npm-debug.*
-assets/
+//store only original blender file, without versions
+*.blend*
