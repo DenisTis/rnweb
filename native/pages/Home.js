@@ -35,35 +35,52 @@ export default class Homepage extends React.Component {
 
   render() {
     const { navigate } = this.props.navigation;
-    return (
-      <View style={styles.container}> 
-        <View style={styles.flagsToolbar}>
-          <TouchableOpacity onPress={this.onFlagClick.bind(this, 'ru')}>
-            <Flag style={styles.flagToolbar} code="RU" size={48} />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={this.onFlagClick.bind(this, 'en')}>
-            <Flag style={styles.flagToolbar} code="GB" size={48} />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={this.onFlagClick.bind(this, 'de')}>
-            <Flag style={styles.flagToolbar} code="DE" size={48} />
-          </TouchableOpacity>
-        </View>
-        <View style={styles.container}>
-          <Icon name='paw' size={80} color="orange" style={styles.icon} />
-          {/* <Picker mode="dropdown"
-          style={styles.picker}
-          selectedValue={this.state.language}
-          onValueChange={this.onPickerChange.bind(this)}>
-          <Picker.Item label={I18n.t('english')} value="en" />
-          <Picker.Item label={I18n.t('russian')} value="ru" />
-          <Picker.Item label={I18n.t('german')} value="de" />
-        </Picker> */}
-          <Button title={I18n.t('enter')}
-            color="orange"
-            onPress={() => navigate('Menu')}
-          />
-        </View>
-      </View>
+    return ( <
+      View style = { styles.container } >
+      <
+      View style = { styles.flagsToolbar } >
+      <
+      TouchableOpacity onPress = { this.onFlagClick.bind(this, 'ru') } >
+      <
+      Flag style = { styles.flagToolbar }
+      code = "RU"
+      size = { 48 }
+      /> <
+      /TouchableOpacity> <
+      TouchableOpacity onPress = { this.onFlagClick.bind(this, 'en') } >
+      <
+      Flag style = { styles.flagToolbar }
+      code = "GB"
+      size = { 48 }
+      /> <
+      /TouchableOpacity> <
+      TouchableOpacity onPress = { this.onFlagClick.bind(this, 'de') } >
+      <
+      Flag style = { styles.flagToolbar }
+      code = "DE"
+      size = { 48 }
+      /> <
+      /TouchableOpacity> <
+      /View> <
+      View style = { styles.container } > { /* <Icon name='paw' size={80} color="orange" style={styles.icon} /> */ }
+
+      {
+        /* <Picker mode="dropdown"
+                  style={styles.picker}
+                  selectedValue={this.state.language}
+                  onValueChange={this.onPickerChange.bind(this)}>
+                  <Picker.Item label={I18n.t('english')} value="en" />
+                  <Picker.Item label={I18n.t('russian')} value="ru" />
+                  <Picker.Item label={I18n.t('german')} value="de" />
+                </Picker> */
+      } <
+      Button title = { I18n.t('enter') }
+      color = "orange"
+      onPress = {
+        () => navigate('Menu') }
+      /> <
+      /View> <
+      /View>
     );
   }
 }

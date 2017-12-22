@@ -5,6 +5,7 @@ import "../styles.css";
 import I18n from "i18n-js";
 
 import * as THREE from "three";
+import OrbitControls from "orbit-controls-es6";
 
 export default class MapNavigationPage extends React.Component {
   constructor(props) {
@@ -27,6 +28,7 @@ export default class MapNavigationPage extends React.Component {
     camera.rotation.x = 15 * Math.PI / 180;
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(width, height);
+    const controls = new OrbitControls(camera, renderer.domElement);
 
     //Start adding geometries
     const planeGeometry = new THREE.PlaneGeometry(10, 10);
@@ -34,7 +36,7 @@ export default class MapNavigationPage extends React.Component {
       color: 0xe69900,
       side: THREE.DoubleSide
     });
-    const plane = new THREE.Mesh( planeGeometry, planeMaterial );
+    const plane = new THREE.Mesh(planeGeometry, planeMaterial);
 
     const geometry = new THREE.BoxGeometry(1, 1, 1);
     const material = new THREE.MeshLambertMaterial({ color: "#ff0000" });
@@ -81,7 +83,6 @@ export default class MapNavigationPage extends React.Component {
   animate() {
     this.cube.rotation.x += 0.01;
     this.cube.rotation.y += 0.01;
-
     this.renderScene();
     this.frameId = window.requestAnimationFrame(this.animate);
   }
