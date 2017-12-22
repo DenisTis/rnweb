@@ -28,7 +28,12 @@ export default class MapNavigationPage extends React.Component {
     camera.rotation.x = 15 * Math.PI / 180;
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(width, height);
+
     const controls = new OrbitControls(camera, renderer.domElement);
+    controls.minAzimuthAngle = -Math.PI / 8; //do not let go below ground
+    controls.maxAzimuthAngle = Math.PI / 8; //do not let go below ground
+    controls.minPolarAngle = Math.PI / 2; //inclination to look top-down
+    controls.maxPolarAngle = Math.PI; // 90% inclination to ground
 
     //Start adding geometries
     const planeGeometry = new THREE.PlaneGeometry(10, 10);
