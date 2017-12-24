@@ -23,21 +23,16 @@ export default class MapNavigationPage extends React.Component {
     const scene = new THREE.Scene();
     scene.background = backgroundColor;
     const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
-    camera.position.z = 10;
-    camera.position.y = -2;
-    camera.rotation.x = 15 * Math.PI / 180;
+    camera.position.z = -2;
+    camera.position.y = 2;
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(width, height);
-    //This makes Orbit Controls to rotate around correct Azimuth angle
-    camera.up.set(0, 0, 1);
 
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.minDistance = 3;
-    //    controls.maxDistance = 10;
-    // controls.minAzimuthAngle = Math.PI / 2; //do not let go below ground
-    // controls.maxAzimuthAngle = 0; //do not let go below ground
+    controls.maxDistance = 10;
     controls.minPolarAngle = 0; //inclination to look top-down
-    controls.maxPolarAngle = Math.PI / 2.5; // 90% inclination to ground
+    controls.maxPolarAngle = Math.PI / 2.5; // around 10% inclination to ground
 
     //Start adding geometries
     const planeGeometry = new THREE.PlaneGeometry(10, 10);
@@ -47,6 +42,7 @@ export default class MapNavigationPage extends React.Component {
     });
     const plane = new THREE.Mesh(planeGeometry, planeMaterial);
     plane.receiveShadow = true;
+    plane.rotation.x = -Math.PI / 2;
 
     const geometry = new THREE.BoxGeometry(1, 1, 1);
     const material = new THREE.MeshLambertMaterial({ color: "#ff0000" });
@@ -59,46 +55,36 @@ export default class MapNavigationPage extends React.Component {
     scene.add(cube);
 
     //Add lights
-    var ambientLight = new THREE.AmbientLight(0x0c0c0c);
-    scene.add(ambientLight);
+    scene.add(new THREE.AmbientLight(0xffffff, 0.3));
 
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
-    var mainLight = new THREE.DirectionalLight();
-    mainLight.position.set(0, -17, 30);
+    var mainLight = new THREE.DirectionalLight(0xffffff, 1);
+    mainLight.position.set(0, 30, -20);
     mainLight.castShadow = true;
+    //mainLight.shadow.darkness = 0;
     scene.add(mainLight);
+    //backlights
+    var secondaryLight = new THREE.DirectionalLight(0xffffff, 0.4);
+    secondaryLight.position.set(20, 0, 20);
+    scene.add(secondaryLight);
+    var secondaryLight2 = new THREE.DirectionalLight(0xffffff, 0.4);
+    secondaryLight2.position.set(-20, 0, 20);
+    scene.add(secondaryLight2);
 
     var jLoader = new THREE.JSONLoader();
     jLoader.load("assets/5FloorBuilding.json", function(geometry, materials) {
       for (var i = 0; i < materials.length; i++) {
         var m = materials[i];
         m.morphTargets = true;
-        console.log(m);
       }
       let mesh = new THREE.Mesh(geometry, materials);
       mesh.scale.set(0.1, 0.1, 0.1);
-      mesh.position.x = 1;
-      mesh.rotation.x = Math.PI / 2;
+      mesh.position.x = -4;
       mesh.castShadow = true;
       scene.add(mesh);
     });
-
-    // jLoader.load("assets/map.json", function(geometry, materials) {
-    //   let object = new THREE.Mesh(
-    //     geometry,
-    //     new THREE.MeshLambertMaterial({ color: "#23467f" })
-    //   );
-    //   //        model = object;
-    //   //object.scale = 0.5;
-    //   object.scale.set(0.5, 0.5, 0.5);
-    //   object.position.y = 1;
-    //   object.rotation.x = Math.PI / 2;
-    //   object.receiveShadow = true;
-    //   object.position.z = -1;
-    //   scene.add(object);
-    //  });
 
     // var helper = new THREE.CameraHelper(mainLight.shadow.camera);
     // scene.add(helper);
