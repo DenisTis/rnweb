@@ -40,13 +40,13 @@ export default class MapNavigationPage extends React.Component {
     controls.maxPolarAngle = Math.PI / 2.5; // 90% inclination to ground
 
     //Start adding geometries
-    // const planeGeometry = new THREE.PlaneGeometry(10, 10);
-    // const planeMaterial = new THREE.MeshLambertMaterial({
-    //   color: 0xe69900,
-    //   side: THREE.DoubleSide
-    // });
-    // const plane = new THREE.Mesh(planeGeometry, planeMaterial);
-    // plane.receiveShadow = true;
+    const planeGeometry = new THREE.PlaneGeometry(10, 10);
+    const planeMaterial = new THREE.MeshLambertMaterial({
+      color: 0xe69900,
+      side: THREE.DoubleSide
+    });
+    const plane = new THREE.Mesh(planeGeometry, planeMaterial);
+    plane.receiveShadow = true;
 
     const geometry = new THREE.BoxGeometry(1, 1, 1);
     const material = new THREE.MeshLambertMaterial({ color: "#ff0000" });
@@ -55,7 +55,7 @@ export default class MapNavigationPage extends React.Component {
     cube.castShadow = true;
 
     //Stop adding geometries
-    //scene.add(plane);
+    scene.add(plane);
     scene.add(cube);
 
     //Add lights
@@ -71,21 +71,35 @@ export default class MapNavigationPage extends React.Component {
     scene.add(mainLight);
 
     var jLoader = new THREE.JSONLoader();
-    jLoader.load("assets/map.json", function(geometry, materials) {
-      let object = new THREE.Mesh(
-        geometry,
-        new THREE.MeshLambertMaterial({ color: "#23467f" })
-      );
-      //        model = object;
-      //object.scale = 0.5;
-      object.scale.set(0.5, 0.5, 0.5);
-      object.position.y = 1;
-      object.rotation.x = Math.PI / 2;
-      object.receiveShadow = true;
-      object.position.z = -1;
-      scene.add(object);
-      //        addPhysicModel(geometry);
+    jLoader.load("assets/5FloorBuilding.json", function(geometry, materials) {
+      for (var i = 0; i < materials.length; i++) {
+        var m = materials[i];
+        m.morphTargets = true;
+        console.log(m);
+      }
+      let mesh = new THREE.Mesh(geometry, materials);
+      mesh.scale.set(0.1, 0.1, 0.1);
+      mesh.position.x = 1;
+      mesh.rotation.x = Math.PI / 2;
+      mesh.castShadow = true;
+      scene.add(mesh);
     });
+
+    // jLoader.load("assets/map.json", function(geometry, materials) {
+    //   let object = new THREE.Mesh(
+    //     geometry,
+    //     new THREE.MeshLambertMaterial({ color: "#23467f" })
+    //   );
+    //   //        model = object;
+    //   //object.scale = 0.5;
+    //   object.scale.set(0.5, 0.5, 0.5);
+    //   object.position.y = 1;
+    //   object.rotation.x = Math.PI / 2;
+    //   object.receiveShadow = true;
+    //   object.position.z = -1;
+    //   scene.add(object);
+    //  });
+
     // var helper = new THREE.CameraHelper(mainLight.shadow.camera);
     // scene.add(helper);
 
