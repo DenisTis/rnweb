@@ -6,6 +6,10 @@ import I18n from "i18n-js";
 
 import * as THREE from "three";
 import OrbitControls from "orbit-controls-es6";
+import GLTF2Loader from "three-gltf2-loader";
+GLTF2Loader(THREE);
+
+const MIN_DISTANCE = 3;
 
 export default class MapNavigationPage extends React.Component {
   constructor(props) {
@@ -23,82 +27,84 @@ export default class MapNavigationPage extends React.Component {
     const scene = new THREE.Scene();
     scene.background = backgroundColor;
     const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
-    camera.position.z = -2;
-    camera.position.y = 2;
+    camera.position.z = -20;
+    camera.position.y = 30;
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(width, height);
 
-    const controls = new OrbitControls(camera, renderer.domElement);
-    controls.minDistance = 3;
-    controls.maxDistance = 10;
-    controls.minPolarAngle = 0; //inclination to look top-down
-    controls.maxPolarAngle = Math.PI / 2.5; // around 10% inclination to ground
-
-    //Start adding geometries
-    const planeGeometry = new THREE.PlaneGeometry(10, 10);
-    const planeMaterial = new THREE.MeshLambertMaterial({
-      color: 0xe69900,
-      side: THREE.DoubleSide
-    });
-    const plane = new THREE.Mesh(planeGeometry, planeMaterial);
-    plane.receiveShadow = true;
-    plane.rotation.x = -Math.PI / 2;
-
-    const geometry = new THREE.BoxGeometry(1, 1, 1);
-    const material = new THREE.MeshLambertMaterial({ color: "#ff0000" });
-    const cube = new THREE.Mesh(geometry, material);
-    cube.position.z = 1;
-    cube.castShadow = true;
-
-    //Stop adding geometries
-    scene.add(plane);
-    scene.add(cube);
+    this.controls = new OrbitControls(camera, renderer.domElement);
+    //if I want to enable Pan, I have to override methods panUp and panLeft inside of OrbitControls class
+    //this means I have to create custom copy of the class
+    this.controls.enablePan = false;
+    this.controls.autoRotate = true;
+    // this.controls.minDistance = MIN_DISTANCE;
+    // this.controls.maxDistance = 50;
+    // this.controls.minPolarAngle = 0; //inclination to look top-down
+    // this.controls.maxPolarAngle = Math.PI / 2.5; // around 10% inclination to ground
 
     //Add lights
-    scene.add(new THREE.AmbientLight(0xffffff, 0.3));
+    //This is the environment light
+    scene.add(new THREE.AmbientLight(0xffffff, 0.2));
 
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
-    var mainLight = new THREE.DirectionalLight(0xffffff, 1);
-    mainLight.position.set(0, 30, -20);
+    var mainLight = new THREE.DirectionalLight(0xffffff, 0.8);
+    mainLight.position.set(0, 20, -20);
     mainLight.castShadow = true;
-    //mainLight.shadow.darkness = 0;
     scene.add(mainLight);
-    //backlights
-    var secondaryLight = new THREE.DirectionalLight(0xffffff, 0.4);
-    secondaryLight.position.set(20, 0, 20);
-    scene.add(secondaryLight);
-    var secondaryLight2 = new THREE.DirectionalLight(0xffffff, 0.4);
-    secondaryLight2.position.set(-20, 0, 20);
-    scene.add(secondaryLight2);
 
-    var jLoader = new THREE.JSONLoader();
-    jLoader.load("assets/5FloorBuilding.json", function(geometry, materials) {
-      for (var i = 0; i < materials.length; i++) {
-        var m = materials[i];
-        m.morphTargets = true;
+    var helper = new THREE.CameraHelper(mainLight.shadow.camera);
+    scene.add(helper);
+
+    // var jLoader = new THREE.JSONLoader();
+    // jLoader.load("assets/5FloorBuilding.json", function(geometry, materials) {
+    //   for (var i = 0; i < materials.length; i++) {
+    //     var m = materials[i];
+    //     m.morphTargets = true;
+    //   }
+    //   let mesh = new THREE.Mesh(geometry, materials);
+    //   mesh.scale.set(0.1, 0.1, 0.1);
+    //   mesh.position.x = -4;
+    //   mesh.castShadow = true;
+    //   scene.add(mesh);
+    // });
+
+    let loader = new THREE.GLTFLoader();
+    loader.load(
+      "assets/scene.glb",
+      function(gltf) {
+        //        gltf.scene.castShadow = true;
+        for (let child of gltf.scene.children) {
+          // child.castShadow = true;
+          // child.receiveShadow = true;
+          for (let subChild of child.children) {
+            subChild.castShadow = true;
+            subChild.receiveShadow = true;
+          }
+          //scene.add(child);
+        }
+        scene.add(gltf.scene);
+        //scene.fog = THREE.FogExp2(0xefd1b5, 0.0025);
+
+        // gltf.animations; // Array<THREE.AnimationClip>
+        // gltf.scene; // THREE.Scene
+        // gltf.scenes; // Array<THREE.Scene>
+        // gltf.cameras; // Array<THREE.Camera>
+      },
+      // called when loading is in progresses
+      function(xhr) {
+        console.log(xhr.loaded / xhr.total * 100 + "% loaded");
+      },
+      // called when loading has errors
+      function(error) {
+        console.log("An error happened");
       }
-      let mesh = new THREE.Mesh(geometry, materials);
-      mesh.scale.set(0.1, 0.1, 0.1);
-      mesh.position.x = -4;
-      mesh.castShadow = true;
-      scene.add(mesh);
-    });
-
-    // var helper = new THREE.CameraHelper(mainLight.shadow.camera);
-    // scene.add(helper);
-
-    // var spotLight = new THREE.SpotLight(0xffffff);
-    // spotLight.position.set(-2, 0, 0);
-    // spotLight.castShadow = true;
-    // scene.add(spotLight);
+    );
 
     this.scene = scene;
     this.camera = camera;
     this.renderer = renderer;
-    this.material = material;
-    this.cube = cube;
 
     this.mount.appendChild(this.renderer.domElement);
     this.start();
@@ -120,8 +126,8 @@ export default class MapNavigationPage extends React.Component {
   }
 
   animate() {
-    this.cube.rotation.x += 0.01;
-    this.cube.rotation.y += 0.01;
+    this.controls.update();
+
     this.renderScene();
     this.frameId = window.requestAnimationFrame(this.animate);
   }
