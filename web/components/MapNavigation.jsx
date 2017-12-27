@@ -37,10 +37,10 @@ export default class MapNavigationPage extends React.Component {
     //this means I have to create custom copy of the class
     this.controls.enablePan = false;
     this.controls.autoRotate = true;
-    // this.controls.minDistance = MIN_DISTANCE;
-    // this.controls.maxDistance = 50;
-    // this.controls.minPolarAngle = 0; //inclination to look top-down
-    // this.controls.maxPolarAngle = Math.PI / 2.5; // around 10% inclination to ground
+    this.controls.minDistance = MIN_DISTANCE;
+    this.controls.maxDistance = 50;
+    this.controls.minPolarAngle = 0; //inclination to look top-down
+    this.controls.maxPolarAngle = Math.PI / 2.5; // around 10% inclination to ground
 
     //Add lights
     //This is the environment light
@@ -74,6 +74,8 @@ export default class MapNavigationPage extends React.Component {
     loader.load(
       "assets/scene.glb",
       function(gltf) {
+        //TODO - in the loaded model, shadows are not working.
+        //I still did not find out how to solve it.
         //        gltf.scene.castShadow = true;
         for (let child of gltf.scene.children) {
           // child.castShadow = true;
@@ -81,6 +83,7 @@ export default class MapNavigationPage extends React.Component {
           for (let subChild of child.children) {
             subChild.castShadow = true;
             subChild.receiveShadow = true;
+            console.log("test no console");
           }
           //scene.add(child);
         }
@@ -99,6 +102,7 @@ export default class MapNavigationPage extends React.Component {
       // called when loading has errors
       function(error) {
         console.log("An error happened");
+        console.log(error);
       }
     );
 
