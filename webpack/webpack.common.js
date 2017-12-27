@@ -48,7 +48,7 @@ module.exports = {
       THREE: "three",
       CANNON: "cannon"
     }),
-    new CleanWebpackPlugin(["dist"]),
+    new CleanWebpackPlugin(["../distWeb"]),
     new HtmlWebpackPlugin({
       template: "./web/index.html",
       filename: "index.html",
@@ -56,7 +56,7 @@ module.exports = {
     })
   ],
   output: {
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, "../distWeb"),
     filename: "bundle.js"
   }
 };
