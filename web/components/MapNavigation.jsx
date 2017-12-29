@@ -5,7 +5,8 @@ import "../styles.css";
 import I18n from "i18n-js";
 
 import * as THREE from "three";
-import OrbitControls from "orbit-controls-es6";
+//import OrbitControls from "orbit-controls-es6";
+import OrbitControls from "../../commons/OrbitControlsEnh";
 import GLTF2Loader from "three-gltf2-loader";
 GLTF2Loader(THREE);
 
@@ -35,8 +36,8 @@ export default class MapNavigationPage extends React.Component {
     this.controls = new OrbitControls(camera, renderer.domElement);
     //if I want to enable Pan, I have to override methods panUp and panLeft inside of OrbitControls class
     //this means I have to create custom copy of the class
-    this.controls.enablePan = false;
-    this.controls.autoRotate = true;
+    //this.controls.enablePan = false;
+    //this.controls.autoRotate = true;
     this.controls.minDistance = MIN_DISTANCE;
     this.controls.maxDistance = 50;
     this.controls.minPolarAngle = 0; //inclination to look top-down
@@ -54,8 +55,8 @@ export default class MapNavigationPage extends React.Component {
     mainLight.castShadow = true;
     scene.add(mainLight);
 
-    var helper = new THREE.CameraHelper(mainLight.shadow.camera);
-    scene.add(helper);
+    // var helper = new THREE.CameraHelper(mainLight.shadow.camera);
+    // scene.add(helper);
 
     // var jLoader = new THREE.JSONLoader();
     // jLoader.load("assets/5FloorBuilding.json", function(geometry, materials) {
