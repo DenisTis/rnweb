@@ -7,7 +7,9 @@ GLTF2Loader(THREE);
 export default class MapScene {
   constructor(parentComponent) {
     //    this.updateLoadedPercentage = parentComponent.props.updateLoadedPercentage;
+    this.parentComponent = parentComponent;
     this.animate = this.animate.bind(this);
+    this.onLoad = this.onLoad.bind(this);
   }
   initialize(mount) {
     this.mount = mount;
@@ -62,7 +64,8 @@ export default class MapScene {
     loader.load(
       "assets/scene.glb",
       function(gltf) {
-        //this.updateLoadedPercentageFunction(100);
+        // //update as 100% loaded
+        // this.onLoad({total: 1});
         //TODO - in the loaded model, shadows are not working.
         //I still did not find out how to solve it.
         //        gltf.scene.castShadow = true;
@@ -85,10 +88,7 @@ export default class MapScene {
         // gltf.cameras; // Array<THREE.Camera>
       },
       // called when loading is in progresses
-      function(xhr) {
-        //this.updateLoadedPercentage(xhr.total * 100);
-        console.log(xhr.loaded / xhr.total * 100 + "% loaded");
-      },
+      this.onLoad,
       // called when loading has errors
       function(error) {
         console.log("An error happened");
@@ -102,6 +102,12 @@ export default class MapScene {
 
     this.mount.appendChild(this.renderer.domElement);
     this.start();
+  }
+
+  onLoad(xhr) {
+    let loaded = Math.floor(xhr.loaded / xhr.total * 100) + "";
+    console.log(loaded + "% loaded");
+    this.parentComponent.updateLoadedPercentage(loaded);
   }
 
   start() {

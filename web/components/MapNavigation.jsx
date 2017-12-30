@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
 
 import "../styles.css";
@@ -9,21 +8,14 @@ import MapScene from "../three/MapScene";
 export default class MapNavigationPage extends React.Component {
   constructor(props) {
     super(props);
-    // this.updateLoadedPercentage = this.updateLoadedPercentage.bind(this);
-    // this.props.updateLoadedPercentage = this.updateLoadedPercentage;
+    this.updateLoadedPercentage = this.updateLoadedPercentage.bind(this);
     this.state = { loadedPercentage: 0 };
     this.mapScene = new MapScene(this);
   }
 
-  // static get propTypes() {
-  //   return {
-  //     updateLoadedPercentage: PropTypes.function
-  //   };
-  // }
-
-  // updateLoadedPercentage(newPercentage) {
-  //   this.setState({ loadedPercentage: newPercentage });
-  // }
+  updateLoadedPercentage(newPercentage) {
+    this.setState({ loadedPercentage: newPercentage });
+  }
 
   componentDidMount() {
     this.mapScene.initialize(this.mount);
@@ -39,7 +31,6 @@ export default class MapNavigationPage extends React.Component {
         style={{
           width: "100%",
           height: "100%"
-          // border: "1px solid #a0c4ff"
         }}
         ref={mount => {
           this.mount = mount;
@@ -58,22 +49,31 @@ export default class MapNavigationPage extends React.Component {
             />
           </NavLink>
         </div>
-        <div
-          className="progress"
-          style={{
-            position: "absolute",
-            left: "50%"
-          }}
-        />
-        <div
-          className="progress-bar"
-          role="progressbar"
-          aria-valuenow={this.state.loadedPercentage}
-          aria-valuemin="0"
-          aria-valuemax="100"
-        >
-          <span className="sr-only" />
-        </div>
+        {this.state.loadedPercentage !== "100" && (
+          <div
+            className="progress"
+            style={{
+              position: "absolute",
+              top: "0",
+              bottom: "0",
+              left: "0",
+              right: "0",
+              margin: "auto",
+              width: "50%"
+            }}
+          >
+            <div
+              className="progress-bar"
+              role="progressbar"
+              aria-valuenow={this.state.loadedPercentage}
+              aria-valuemin="0"
+              aria-valuemax="100"
+              style={{ width: this.state.loadedPercentage + "%" }}
+            >
+              {this.state.loadedPercentage} {I18n.t("PercentsLoaded")}
+            </div>
+          </div>
+        )}
       </div>
     );
   }

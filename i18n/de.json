@@ -5,5 +5,6 @@
   "enter": "Eingang",
   "menu": "Menu",
   "home": "Erste Seite",
-  "notFound": "Die Seite existiert nicht"
+  "notFound": "Die Seite existiert nicht",
+  "PercentsLoaded": "% geladen"
 }
