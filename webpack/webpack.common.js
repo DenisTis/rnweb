@@ -3,6 +3,9 @@ var webpack = require("webpack");
 
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CleanOptions = {
+  allowExternal: true
+};
 
 module.exports = {
   entry: "./web/index.jsx",
@@ -48,7 +51,7 @@ module.exports = {
       THREE: "three",
       CANNON: "cannon"
     }),
-    new CleanWebpackPlugin(["../distWeb"]),
+    new CleanWebpackPlugin(["../distWeb"], CleanOptions),
     new HtmlWebpackPlugin({
       template: "./web/index.html",
       filename: "index.html",

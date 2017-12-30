@@ -11,6 +11,7 @@ export default class MapScene {
     this.animate = this.animate.bind(this);
     this.onLoad = this.onLoad.bind(this);
   }
+
   initialize(mount) {
     this.mount = mount;
     const width = this.mount.clientWidth;

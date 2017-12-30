@@ -325,6 +325,9 @@ export default class OrbitControls extends EventDispatcher {
         //TODO find how to read minDistance and maxDistance
         let vectorPosition = new Vector3().setFromMatrixPosition(objectMatrix);
         vectorPosition.add(v);
+        if (vectorPosition.y < 5) {
+          return;
+        }
         if (vectorPosition.x < -100 || vectorPosition.x > 100) {
           return;
         }
@@ -346,6 +349,9 @@ export default class OrbitControls extends EventDispatcher {
         //TODO find how to read minDistance and maxDistance
         let vectorPosition = new Vector3().setFromMatrixPosition(objectMatrix);
         vectorPosition.add(v);
+        if (vectorPosition.y < 5) {
+          return;
+        }
         if (vectorPosition.x < -100 || vectorPosition.x > 100) {
           return;
         }
@@ -431,7 +437,10 @@ export default class OrbitControls extends EventDispatcher {
 
     function dollyOut(dollyScale) {
       if (Object.getPrototypeOf(scope.object).isPerspectiveCamera) {
-        scale *= dollyScale;
+        //Denis - allow zoom in only until special height
+        if (scope.object.position.y > 5) {
+          scale *= dollyScale;
+        }
       } else if (Object.getPrototypeOf(scope.object).isOrthographicCamera) {
         scope.object.zoom = Math.max(
           scope.minZoom,
