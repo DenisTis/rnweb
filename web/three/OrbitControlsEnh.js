@@ -321,20 +321,20 @@ export default class OrbitControls extends EventDispatcher {
       return function panLeft(distance, objectMatrix) {
         v.setFromMatrixColumn(objectMatrix, 0); // get X column of objectMatrix
         v.multiplyScalar(-distance);
-        //>>Insert
-        //TODO find how to read minDistance and maxDistance
-        let vectorPosition = new Vector3().setFromMatrixPosition(objectMatrix);
-        vectorPosition.add(v);
-        if (vectorPosition.y < 5) {
-          return;
-        }
-        if (vectorPosition.x < -100 || vectorPosition.x > 100) {
-          return;
-        }
-        if (vectorPosition.z < -100 || vectorPosition.z > 100) {
-          return;
-        }
-        //<<Insert
+        // //>>Insert
+        // //TODO find how to read minDistance and maxDistance
+        // let vectorPosition = new Vector3().setFromMatrixPosition(objectMatrix);
+        // vectorPosition.add(v);
+        // if (vectorPosition.y < 5) {
+        //   return;
+        // }
+        // if (vectorPosition.x < -100 || vectorPosition.x > 100) {
+        //   return;
+        // }
+        // if (vectorPosition.z < -100 || vectorPosition.z > 100) {
+        //   return;
+        // }
+        // //<<Insert
         panOffset.add(v);
       };
     })();
@@ -345,20 +345,20 @@ export default class OrbitControls extends EventDispatcher {
       return function panUp(distance, objectMatrix) {
         v.setFromMatrixColumn(objectMatrix, 1); // get Y column of objectMatrix
         v.multiplyScalar(distance);
-        //>>Insert
-        //TODO find how to read minDistance and maxDistance
-        let vectorPosition = new Vector3().setFromMatrixPosition(objectMatrix);
-        vectorPosition.add(v);
-        if (vectorPosition.y < 5) {
-          return;
-        }
-        if (vectorPosition.x < -100 || vectorPosition.x > 100) {
-          return;
-        }
-        if (vectorPosition.z < -100 || vectorPosition.z > 100) {
-          return;
-        }
-        //<<Insert
+        // //>>Insert
+        // //TODO find how to read minDistance and maxDistance
+        // let vectorPosition = new Vector3().setFromMatrixPosition(objectMatrix);
+        // vectorPosition.add(v);
+        // if (vectorPosition.y < 5) {
+        //   return;
+        // }
+        // if (vectorPosition.x < -100 || vectorPosition.x > 100) {
+        //   return;
+        // }
+        // if (vectorPosition.z < -100 || vectorPosition.z > 100) {
+        //   return;
+        // }
+        // //<<Insert
         panOffset.add(v);
       };
     })();
@@ -437,10 +437,10 @@ export default class OrbitControls extends EventDispatcher {
 
     function dollyOut(dollyScale) {
       if (Object.getPrototypeOf(scope.object).isPerspectiveCamera) {
-        //Denis - allow zoom in only until special height
-        if (scope.object.position.y > 5) {
+        // //Denis - allow zoom in only until special height
+        // if (scope.object.position.y > 5) {
           scale *= dollyScale;
-        }
+//        }
       } else if (Object.getPrototypeOf(scope.object).isOrthographicCamera) {
         scope.object.zoom = Math.max(
           scope.minZoom,

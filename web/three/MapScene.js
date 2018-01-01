@@ -1,6 +1,7 @@
 import * as THREE from "three";
+
 //import OrbitControls from "orbit-controls-es6";
-import OrbitControls from "../../commons/OrbitControlsEnh";
+import OrbitControls from "./OrbitControlsEnh";
 import GLTF2Loader from "three-gltf2-loader";
 GLTF2Loader(THREE);
 
@@ -16,50 +17,40 @@ export default class MapScene {
     this.mount = mount;
     const width = this.mount.clientWidth;
     const height = this.mount.clientHeight;
-
     const backgroundColor = new THREE.Color(0xc5eafd);
     const scene = new THREE.Scene();
     scene.background = backgroundColor;
+
     const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
-    camera.position.z = -20;
-    camera.position.y = 30;
+    camera.position.z = -5;
+    camera.position.y = 3;
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(width, height);
 
     this.controls = new OrbitControls(camera, renderer.domElement);
     //this.controls.autoRotate = true;
+
     this.controls.minDistance = 3;
-    this.controls.maxDistance = 50;
+    this.controls.maxDistance = 6;
     this.controls.minPolarAngle = 0; //inclination to look top-down
     this.controls.maxPolarAngle = Math.PI / 2.5; // around 10% inclination to ground
 
     //Add lights
     //This is the environment light
-    scene.add(new THREE.AmbientLight(0xffffff, 0.2));
-
+    scene.add(new THREE.AmbientLight(0xffffff, 0.6));
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
-    var mainLight = new THREE.DirectionalLight(0xffffff, 0.8);
+    //improve fog color and quality later
+    scene.fog = new THREE.Fog("grey", 5, 20);
+
+    var mainLight = new THREE.DirectionalLight(0xffffff, 0.4);
     mainLight.position.set(0, 20, -20);
     mainLight.castShadow = true;
     scene.add(mainLight);
 
     // var helper = new THREE.CameraHelper(mainLight.shadow.camera);
     // scene.add(helper);
-
-    // var jLoader = new THREE.JSONLoader();
-    // jLoader.load("assets/5FloorBuilding.json", function(geometry, materials) {
-    //   for (var i = 0; i < materials.length; i++) {
-    //     var m = materials[i];
-    //     m.morphTargets = true;
-    //   }
-    //   let mesh = new THREE.Mesh(geometry, materials);
-    //   mesh.scale.set(0.1, 0.1, 0.1);
-    //   mesh.position.x = -4;
-    //   mesh.castShadow = true;
-    //   scene.add(mesh);
-    // });
 
     let loader = new THREE.GLTFLoader();
     loader.load(
@@ -81,6 +72,7 @@ export default class MapScene {
           //scene.add(child);
         }
         scene.add(gltf.scene);
+
         //scene.fog = THREE.FogExp2(0xefd1b5, 0.0025);
 
         // gltf.animations; // Array<THREE.AnimationClip>
@@ -96,6 +88,12 @@ export default class MapScene {
         console.log(error);
       }
     );
+
+    // //find how to bind load method to this class (otherwise this.addLocationLabels is not found)
+    // this.addLocationLabels(
+    //   renderer,
+    //   scene.getObjectByName("Locations").children
+    // );
 
     this.scene = scene;
     this.camera = camera;
@@ -130,6 +128,53 @@ export default class MapScene {
   }
 
   renderScene() {
+    if (
+      this.scene.getObjectByName("Locations") &&
+      this.scene.getObjectByName("Locations").children
+    ) {
+      let locations = this.scene.getObjectByName("Locations").children;
+      for (let location of locations) {
+        this.updateTextLabelPosition(location);
+      }
+    }
     this.renderer.render(this.scene, this.camera);
+  }
+
+  addLocationLabels(renderer, locations) {
+    for (let location of locations) {
+      this.createTextLabel(renderer, location);
+    }
+  }
+
+  updateTextLabelPosition(location) {
+    const width = this.mount.clientWidth;
+    const height = this.mount.clientHeight;
+    let textPosition = new THREE.Vector3(0, 0, 0);
+    textPosition.copy(location.position);
+    textPosition.y = 0.5;
+    let projectedPosition = textPosition.project(this.camera);
+    projectedPosition.x = (projectedPosition.x + 1) / 2 * width;
+    projectedPosition.y = -(projectedPosition.y - 1) / 2 * height;
+    let textLabel = document.getElementById(location.name);
+    if (!textLabel) {
+      textLabel = this.createTextLabel(location);
+    }
+    textLabel.style.left = projectedPosition.x + "px";
+    textLabel.style.top = projectedPosition.y + "px";
+  }
+
+  createTextLabel(location) {
+    var div = document.createElement("div");
+    div.id = location.name;
+    div.className = "text-label";
+    div.style.position = "absolute";
+    div.style.width = 100;
+    div.style.height = 100;
+    div.innerHTML = location.name;
+    div.style.top = -1000;
+    div.style.left = -1000;
+    document.getElementById("container").appendChild(div);
+    return div;
+    //renderer.domElement.getParent().appendChild(div);
   }
 }

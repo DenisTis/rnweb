@@ -28,6 +28,7 @@ export default class MapNavigationPage extends React.Component {
   render() {
     return (
       <div
+        id="container"
         style={{
           width: "100%",
           height: "100%"
