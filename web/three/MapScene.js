@@ -28,12 +28,14 @@ export default class MapScene {
     renderer.setSize(width, height);
 
     this.controls = new OrbitControls(camera, renderer.domElement);
+    this.controls.enablePan = false;
     //this.controls.autoRotate = true;
 
-    this.controls.minDistance = 3;
-    this.controls.maxDistance = 6;
+    this.controls.minDistance = 2;
+    this.controls.maxDistance = 4;
     this.controls.minPolarAngle = 0; //inclination to look top-down
-    this.controls.maxPolarAngle = Math.PI / 2.5; // around 10% inclination to ground
+    this.controls.maxPolarAngle = Math.PI / 6; // around 10% inclination to ground
+    //this.controls.maxPolarAngle = Math.PI / 2.5; // around 10% inclination to ground
 
     //Add lights
     //This is the environment light
